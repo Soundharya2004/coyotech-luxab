@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%2360A5FA' stroke='%232563EB'%3E%3Cpath d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/%3E%3C/svg%3E") 16 16, auto;
+  }
+
+  body {
+    @apply antialiased text-gray-900 bg-gradient-to-br from-blue-50 via-white to-blue-50;
+  }
+
+  a, button {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%232563EB' stroke='%23FFFFFF'%3E%3Cpath d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/%3E%3C/svg%3E") 16 16, pointer;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-xl hover:shadow-blue-200/50;
+  }
+
+  .water-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white rounded-full px-8 py-3 transition-all duration-300 shadow-lg hover:shadow-blue-400/50;
+  }
+
+  .water-card {
+    @apply relative overflow-hidden rounded-xl bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-md shadow-xl hover:shadow-blue-200/50 border border-white/20 p-6 transition-all duration-300;
+  }
+
+  .water-button::before {
+    content: '';
+    @apply absolute inset-0 bg-blue-300/30 translate-y-full transition-transform duration-300;
+  }
+
+  .water-button:hover::before {
+    @apply translate-y-0;
+    animation: wave 2s infinite;
+  }
+
+  .water-drop {
+    animation: float-drop 3s ease-in-out infinite;
+  }
+
+  .water-ripple {
+    @apply absolute rounded-full bg-blue-400/20;
+    animation: ripple 2s linear infinite;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-8 text-center;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(100%) rotate(0deg);
+  }
+  50% {
+    transform: translateY(0) rotate(3deg);
+  }
+}
+
+@keyframes float-drop {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.floating-icon {
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(37, 99, 235, 0.2));
+}
+
+.water-bg {
+  background: linear-gradient(135deg, #60A5FA 0%, #2563EB 100%);
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
