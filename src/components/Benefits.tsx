@@ -1,64 +1,54 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Battery, Brain, Heart, Droplets } from 'lucide-react';
+import React from "react";
+import { GlassWater, Droplet, Waves, Droplets } from "lucide-react"; // Ensure lucide-react is installed
 
-const Benefits = () => {
-  const benefits = [
-    {
-      icon: Battery,
-      title: 'Increasing Energy',
-      description: 'Alkaline water boosts energy levels during physical activities, enhancing your daily performance.'
-    },
-    {
-      icon: Droplets,
-      title: 'Detoxification',
-      description: 'Improves nutrient absorption by eliminating mucus in the colon wall for better health.'
-    },
-    {
-      icon: Heart,
-      title: 'Prevents Osteoporosis',
-      description: 'Maintains healthy pH levels in your body to support strong and healthy bones.'
-    },
-    {
-      icon: Brain,
-      title: 'Improves Digestion',
-      description: 'Prevents acid-related intestinal disorders for better digestive health.'
-    }
-  ];
+const benefitsData = [
+  {
+    icon: <GlassWater size={24} />,
+    title: "Increasing Energy",
+    description: "Boosts energy during physical activities",
+  },
+  {
+    icon: <Droplets size={24} />,
+    title: "Detoxification",
+    description: "Improves nutrient absorption",
+  },
+  {
+    icon: <Droplet size={24} />,
+    title: "Prevents Osteoporosis",
+    description: "Maintains healthy pH levels",
+  },
+  {
+    icon: <Waves size={24} />,
+    title: "Improves Digestion",
+    description: "Prevents acid-related disorders",
+  },
+];
 
+const Benefits: React.FC = () => {
   return (
-    <section className="py-20 px-4 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="section-title">Benefits of LUXAB Water</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="water-card group"
-            >
-              <motion.div
-                className="w-14 h-14 mb-6 rounded-full bg-blue-100 flex items-center justify-center group-hover:scale-110 transition-transform"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
-                <benefit.icon className="w-7 h-7 text-blue-600" />
-              </motion.div>
-              
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">{benefit.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
-              
-              <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-blue-100 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500" />
-            </motion.div>
-          ))}
-        </div>
+    <div className="flex flex-col items-center py-10 bg-gray-50">
+      {/* Heading */}
+      <h2 className="text-2xl font-bold text-black mb-8">Benefits</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl">
+        {benefitsData.map((benefit, index) => (
+          <div
+            key={index}
+            className="relative bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-[0_4px_20px_rgba(59,130,246,0.4)] group"
+          >
+            {/* Icon with Circular Background */}
+            <div className="absolute top-4 left-4 flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full text-blue-500 transition-transform duration-300 group-hover:rotate-180">
+              {benefit.icon}
+            </div>
+            {/* Title */}
+            <h3 className="text-lg font-semibold text-gray-800 mt-16 mb-2 group-hover:text-blue-600">
+              {benefit.title}
+            </h3>
+            {/* Description */}
+            <p className="text-sm text-gray-600">{benefit.description}</p>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

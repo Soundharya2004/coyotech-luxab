@@ -1,16 +1,25 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ShoppingCart, Youtube, Facebook, Instagram, Twitter, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Shipping', path: '/shipping' },
+    { name: 'Cart', path: '/cart' },
+    { name: 'Shop', path: '/shop' },
+    { name: 'Account', path: '/account' },
+    { name: 'Contact', path: '/contact' },
+  ];
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Logo Section */}
         <div className="flex items-center py-2 md:justify-center justify-between">
-          {/* Logo */}
           <div className="flex-shrink-0">
             <img
               src="https://luxab.ae/wp-content/uploads/2024/10/IMG_7683.jpg"
@@ -19,7 +28,6 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Hamburger Icon (Mobile Only) */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -30,7 +38,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Navigation Items */}
         <div
           className={`${
             isMenuOpen ? 'block' : 'hidden'
@@ -42,34 +49,23 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {[
-              'About',
-              'Contact',
-              'Shipping',
-              'Cart',
-              'Shop',
-              'Account',
-              'Gallery',
-              'Checkout',
-              'Water',
-              'Blog',
-            ].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/ /g, '-')}`}
+            {navItems.map(({ name, path }) => (
+              <Link
+                key={name}
+                to={path}
                 className="text-gray-700 hover:text-blue-600 px-2 py-1 rounded-md text-sm font-medium relative group"
               >
-                {item}
+                {name}
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </a>
+              </Link>
             ))}
           </motion.div>
         </div>
 
-        {/* Social Links & Cart */}
         <div className="flex justify-center py-2">
           <div className="flex items-center space-x-4">
             <div className="flex space-x-3">
+              {/* Social Links */}
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 href="#youtube"
@@ -108,21 +104,6 @@ export default function Navbar() {
             </motion.div>
           </div>
         </div>
-      </div>
-
-      {/* Water Animation */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 overflow-hidden">
-        <motion.div
-          className="h-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400"
-          animate={{
-            x: ['-100%', '100%'],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
       </div>
     </nav>
   );
