@@ -15,9 +15,9 @@ export default function Navbar() {
     { name: 'Account', path: '/account' },
     { name: 'Contact', path: '/contact' },
     { name: 'Gallery', path: '/gallery' },
-    {name:'Checkout', path:'/checkout'},
-    {name:'Water', path:'/water'},
-    {name:'Blog', path:'/blog'}
+    { name: 'Checkout', path: '/checkout' },
+    { name: 'Water', path: '/water' },
+    { name: 'Blog', path: '/blog' }
   ];
 
   return (
@@ -86,35 +86,51 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Sticky Menu Items */}
-      <nav className="sticky top-0 bg-white shadow-md z-50">
+      {/* Sticky Menu for Larger Screens */}
+      <nav className="hidden md:block sticky top-0 bg-white shadow-md z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatePresence>
-            {(isMenuOpen || !isMenuOpen) && (
-              <motion.div
-                className="py-2"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex flex-col md:flex-row items-center justify-center md:space-x-6 space-y-2 md:space-y-0">
-                  {navItems.map(({ name, path }) => (
-                    <Link
-                      key={name}
-                      to={path}
-                      className="text-gray-700 hover:text-blue-600 px-2 py-1 rounded-md text-sm font-medium relative group"
-                    >
-                      {name}
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div className="py-2">
+            <div className="flex items-center justify-center space-x-6">
+              {navItems.map(({ name, path }) => (
+                <Link
+                  key={name}
+                  to={path}
+                  className="text-gray-700 hover:text-blue-600 px-2 py-1 rounded-md text-sm font-medium relative group"
+                >
+                  {name}
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </nav>
+
+      {/* Dropdown Menu for Mobile Screens */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.nav
+            className="block md:hidden bg-white shadow-md z-50"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="px-4 py-4">
+              {navItems.map(({ name, path }) => (
+                <Link
+                  key={name}
+                  to={path}
+                  className="block text-gray-700 hover:text-blue-600 py-2 text-sm font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {name}
+                </Link>
+              ))}
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </>
   );
 }
