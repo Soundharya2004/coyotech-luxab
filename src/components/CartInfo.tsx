@@ -22,7 +22,7 @@ export default function CartInfo() {
                     <div className="flex items-center justify-between py-4">
                       <div className="flex items-start">
                         <img
-                          src="/placeholder.svg?height=100&width=100"
+                          src="https://luxab.ae/wp-content/uploads/2024/11/12-pieces-pack-17-300x300.png"
                           alt="Sparkling Water"
                           className="h-20 w-20 rounded-md object-cover"
                         />
