@@ -7,7 +7,6 @@ import ContactBanner from "../components/ContactBanner";
 function Contact() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
 <br /><br /> <br /> 
      <ContactHero />
      <Connect />

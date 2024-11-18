@@ -18,6 +18,10 @@ import Shipping from "./shipping/page";
 import Cart from "./cart/page"
 import Shop from "./shop/page"
 import Account from "./account/page"
+import Gallery from "./gallery/page";
+import CheckoutPage from "./checkout/page";
+import WaterPage from "./water/page";
+import BlogPage from "./blog/page";
 
 function App() {
   return (
@@ -50,8 +54,10 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/account" element={<Account />} />
-
-
+          <Route path="/gallery" element={<Gallery />}/>
+          <Route path="/checkout" element={<CheckoutPage />}/>
+          <Route path="/water" element={<WaterPage />} />
+          <Route path="/blog" element={<BlogPage />} />
 
 
 
